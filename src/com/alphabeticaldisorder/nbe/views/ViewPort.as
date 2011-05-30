@@ -1,13 +1,10 @@
 ﻿package com.alphabeticaldisorder.nbe.views 
 {
 	import com.alphabeticaldisorder.nbe.model.Model;
-	import com.alphabeticaldisorder.nbe.event.NumberEvent;
-	import com.alphabeticaldisorder.nbe.event.ViewPortEvent;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.geom.Rectangle;
 	
 	/**
@@ -31,14 +28,14 @@
 		private var _view:Sprite;
 		
 		private function init():void {
-			_model.addEventListener(NumberEvent.UPDATE_BASE, render);
-			_model.addEventListener(NumberEvent.UPDATE_NUMBER, render);
-			_model.addEventListener(ViewPortEvent.UPDATE_HSIZE, render);
-			_model.addEventListener(ViewPortEvent.UPDATE_HGAP, render);
-			_model.addEventListener(ViewPortEvent.UPDATE_VSIZE, render);
-			_model.addEventListener(ViewPortEvent.UPDATE_VGAP, render);
-			_model.addEventListener(ViewPortEvent.UPDATE_COL_SPACING, render);
-			_model.addEventListener(ViewPortEvent.UPDATE_BGSHADE, render);
+			_model.baseUpdated.add(render);
+			_model.numberUpdated.add(render);
+			_model.hSizeUpdated.add(render);
+			_model.hGapUpdated.add(render);
+			_model.vSizeUpdated.add(render);
+			_model.vGapUpdated.add(render);
+			_model.colSpacingUpdated.add(render);
+			_model.bgShadeUpdated.add(render);
 			
 			_bmd = new BitmapData(780, 520, false, 0x999999);
 			_bmp = new Bitmap(_bmd);
@@ -49,7 +46,7 @@
 			_rect = new Rectangle(0, 0, _bmd.width, _bmd.height);
 			_colorList = _model.colorList;
 			
-			render(null);
+			render();
 		}
 		
 		private var _numCount:int;
@@ -73,7 +70,7 @@
 		private var _bmdWidth:int;
 		private var _bgColor:int;
 		
-		private function render(evt:Event = null):void {
+		private function render():void {
 			renderPrimes();
 			return;
 			_rect.x = 0;
@@ -127,7 +124,7 @@
 			_bmd.unlock();
 		}
 		
-		private function renderPrimes(evt:Event = null):void {
+		private function renderPrimes():void {
 			_rect.x = 0;
 			_rect.y = 0;
 			_rect.width = _bmdWidth = _bmd.width;

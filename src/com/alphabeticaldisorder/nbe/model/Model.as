@@ -1,13 +1,12 @@
 ﻿package com.alphabeticaldisorder.nbe.model 
 {
-	import com.alphabeticaldisorder.nbe.event.NumberEvent;
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
+	import org.osflash.signals.Signal;
+
 	/**
 	 * ...
 	 * @author Emil Ng
 	 */
-	public class Model extends EventDispatcher
+	public class Model
 	{
 		private const MAXBASE:int = 255;
 		
@@ -22,6 +21,15 @@
 		private var _primes:Vector.<int>;
 		private var _bgShade:int = 153;
 		
+		public var baseUpdated:Signal;
+		public var numberUpdated:Signal;
+		public var hSizeUpdated:Signal;
+		public var hGapUpdated:Signal;
+		public var vSizeUpdated:Signal;
+		public var vGapUpdated:Signal;
+		public var colSpacingUpdated:Signal;
+		public var bgShadeUpdated:Signal;
+		
 		public function Model() 
 		{
 			init();
@@ -32,6 +40,15 @@
 			{
 				_colorList.push(getBaseColors(i));
 			}
+			
+			baseUpdated 		= new Signal();
+			numberUpdated 		= new Signal(); 
+			hSizeUpdated		= new Signal();
+			hGapUpdated			= new Signal();
+			vSizeUpdated		= new Signal();
+			vGapUpdated			= new Signal();
+			colSpacingUpdated	= new Signal();
+			bgShadeUpdated		= new Signal();
 			
 			generatePrimes();
 		}
@@ -94,7 +111,7 @@
 		public function set base(value:int):void 
 		{
 			_base = value;
-			dispatchEvent(new NumberEvent(NumberEvent.UPDATE_BASE));
+			baseUpdated.dispatch();
 		}
 		
 		public function get number():int { return _number; }
@@ -102,7 +119,7 @@
 		public function set number(value:int):void 
 		{
 			_number = value;
-			dispatchEvent(new NumberEvent(NumberEvent.UPDATE_NUMBER));
+			numberUpdated.dispatch();
 		}
 		
 		public function get hsize():int { return _hsize; }
@@ -110,7 +127,7 @@
 		public function set hsize(value:int):void 
 		{
 			_hsize = value;
-			dispatchEvent(new Event("updateHSize"));
+			hSizeUpdated.dispatch();
 		}
 		
 		public function get hgap():int { return _hgap; }
@@ -118,7 +135,7 @@
 		public function set hgap(value:int):void 
 		{
 			_hgap = value;
-			dispatchEvent(new Event("updateHGap"));
+			hGapUpdated.dispatch();
 		}
 		
 		public function get vsize():int { return _vsize; }
@@ -126,7 +143,7 @@
 		public function set vsize(value:int):void 
 		{
 			_vsize = value;
-			dispatchEvent(new Event("updateVSize"));
+			vSizeUpdated.dispatch();
 		}
 		
 		public function get vgap():int { return _vgap; }
@@ -134,7 +151,7 @@
 		public function set vgap(value:int):void 
 		{
 			_vgap = value;
-			dispatchEvent(new Event("updateVgap"));
+			vGapUpdated.dispatch();
 		}
 		
 		public function get colSpacing():int { return _colSpacing; }
@@ -142,7 +159,7 @@
 		public function set colSpacing(value:int):void 
 		{
 			_colSpacing = value;
-			dispatchEvent(new Event("updateColSpacing"));
+			colSpacingUpdated.dispatch();
 		}
 		
 		public function get bgShade():int { return _bgShade; }
@@ -150,7 +167,7 @@
 		public function set bgShade(value:int):void 
 		{
 			_bgShade = value;
-			dispatchEvent(new Event("updateBgShade"));
+			bgShadeUpdated.dispatch();
 		}
 	}
 
