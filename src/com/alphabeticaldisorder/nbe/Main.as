@@ -3,11 +3,13 @@
 	import com.alphabeticaldisorder.nbe.model.Model;
 	import com.alphabeticaldisorder.nbe.views.ControlPanel;
 	import com.alphabeticaldisorder.nbe.views.ViewPort;
+	import com.bit101.components.VRangeSlider;
+	
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	import flash.events.Event;
-	
-	import com.bit101.components.VRangeSlider;
 	
 	/**
 	 * ...
@@ -29,11 +31,23 @@
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			// entry point
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.align =  StageAlign.TOP_LEFT;
 			_model = new Model();
 			
 			this.addChild(new ControlPanel(_model));
 			this.addChild(new ViewPort(_model));
+			
+			stage.addEventListener(Event.RESIZE, resize);
+			resize()
+		}
+		
+		/**
+		 * TODO: update visual elements after stage resize
+		 */
+		private function resize(e:Event = null):void
+		{
+			
 		}
 
 	}
