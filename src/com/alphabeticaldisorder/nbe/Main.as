@@ -15,7 +15,7 @@
 	 * ...
 	 * @author Emil Ng
 	 */
-	[SWF(width="800", height="600", frameRate="30", backgroundColor="#ffffff")]
+	[SWF(width="900", height="700", frameRate="30", backgroundColor="#ffffff")]
 	
 	public class Main extends Sprite 
 	{
@@ -35,8 +35,8 @@
 			stage.align =  StageAlign.TOP_LEFT;
 			_model = new Model();
 			
-			this.addChild(new ControlPanel(_model));
 			this.addChild(new ViewPort(_model));
+			this.addChild(new ControlPanel(_model));
 			
 			stage.addEventListener(Event.RESIZE, resize);
 			resize()
