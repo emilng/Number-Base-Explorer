@@ -50,7 +50,7 @@
 			colSpacingUpdated	= new Signal();
 			bgShadeUpdated		= new Signal();
 			
-			generatePrimes();
+//			generatePrimes();
 		}
 		
 		//create color list of digits in base to colors from lightest = lowest to darkest = highest

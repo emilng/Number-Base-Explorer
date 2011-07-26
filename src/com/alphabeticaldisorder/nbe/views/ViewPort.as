@@ -71,8 +71,8 @@
 		private var _bgColor:int;
 		
 		private function render():void {
-			renderPrimes();
-			return;
+//			renderPrimes();
+//			return;
 			_rect.x = 0;
 			_rect.y = 0;
 			_rect.width = _bmdWidth = _bmd.width;
