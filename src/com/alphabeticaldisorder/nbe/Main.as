@@ -1,7 +1,7 @@
 ﻿package com.alphabeticaldisorder.nbe
 {
 	import com.alphabeticaldisorder.nbe.model.Model;
-	import com.alphabeticaldisorder.nbe.views.ControlPanel;
+	import com.alphabeticaldisorder.nbe.views.SliderPanel;
 	import com.alphabeticaldisorder.nbe.views.ViewPort;
 	import com.bit101.components.VRangeSlider;
 	
@@ -36,7 +36,7 @@
 			_model = new Model();
 			
 			this.addChild(new ViewPort(_model));
-			this.addChild(new ControlPanel(_model));
+			this.addChild(new SliderPanel(_model));
 			
 			stage.addEventListener(Event.RESIZE, resize);
 			resize()

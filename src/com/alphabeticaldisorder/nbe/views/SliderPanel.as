@@ -11,7 +11,7 @@
 	 * ...
 	 * @author Emil Ng
 	 */
-	public class ControlPanel extends Sprite
+	public class SliderPanel extends Sprite
 	{
 		private var _window:Window;
 		private var _baseSlider:HUISlider;
@@ -24,7 +24,7 @@
 		private var _bgShadeSlider:HUISlider;
 		private var _model:Model;
 		
-		public function ControlPanel(model:Model) 
+		public function SliderPanel(model:Model) 
 		{
 			_model = model;
 			init();
