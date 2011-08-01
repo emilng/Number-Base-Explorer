@@ -40,7 +40,7 @@
 			_bmd = new BitmapData(780, 520, false, 0x999999);
 			_bmp = new Bitmap(_bmd);
 			_bmp.x = 10;
-			_bmp.y = 70;
+			_bmp.y = 150;
 			this.addChild(_bmp);
 			
 			_rect = new Rectangle(0, 0, _bmd.width, _bmd.height);
