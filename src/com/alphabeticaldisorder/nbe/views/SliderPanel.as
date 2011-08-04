@@ -32,7 +32,7 @@
 		
 		private function init():void {
 			
-			_window = new Window(this, 10, 10, "Control Panel");
+			_window = new Window(this, 10, 10, "Slider Panel");
 			_window.width = 720;
 			_window.height = 120;
 			_window.draggable = true;
