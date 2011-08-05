@@ -1,5 +1,7 @@
 ﻿package com.alphabeticaldisorder.nbe.model 
 {
+	import com.alphabeticaldisorder.nbe.vo.RangeVO;
+	
 	import org.osflash.signals.Signal;
 
 	/**
@@ -21,6 +23,15 @@
 		private var _primes:Vector.<int>;
 		private var _bgShade:int = 153;
 		
+		public var baseRange:RangeVO;
+		public var numberRange:RangeVO;
+		public var hSizeRange:RangeVO
+		public var hGapRange:RangeVO
+		public var vSizeRange:RangeVO
+		public var vGapRange:RangeVO
+		public var colSpacingRange:RangeVO
+		public var bgShadeRange:RangeVO
+		
 		public var baseUpdated:Signal;
 		public var numberUpdated:Signal;
 		public var hSizeUpdated:Signal;
@@ -40,6 +51,15 @@
 			{
 				_colorList.push(getBaseColors(i));
 			}
+			
+			baseRange 		= new RangeVO(2, 254, 	_base);
+			numberRange 	= new RangeVO(0, 10000, _number);
+			hSizeRange 		= new RangeVO(1, 200, 	_hsize);
+			hGapRange 		= new RangeVO(0, 80, 	_hgap);
+			vSizeRange 		= new RangeVO(1, 200, 	_vsize);
+			vGapRange 		= new RangeVO(0, 80,	_vgap);
+			colSpacingRange = new RangeVO(0, 30, 	_colSpacing);
+			bgShadeRange 	= new RangeVO(0, 254, 	_bgShade);
 			
 			baseUpdated 		= new Signal();
 			numberUpdated 		= new Signal(); 
@@ -111,6 +131,7 @@
 		public function set base(value:int):void 
 		{
 			_base = value;
+			baseRange.value = value;
 			baseUpdated.dispatch();
 		}
 		
@@ -119,6 +140,7 @@
 		public function set number(value:int):void 
 		{
 			_number = value;
+			numberRange.value = value;
 			numberUpdated.dispatch();
 		}
 		
@@ -127,6 +149,7 @@
 		public function set hsize(value:int):void 
 		{
 			_hsize = value;
+			hSizeRange.value = value;
 			hSizeUpdated.dispatch();
 		}
 		
@@ -135,6 +158,7 @@
 		public function set hgap(value:int):void 
 		{
 			_hgap = value;
+			hGapRange.value = value;
 			hGapUpdated.dispatch();
 		}
 		
@@ -143,6 +167,7 @@
 		public function set vsize(value:int):void 
 		{
 			_vsize = value;
+			vSizeRange.value = value;
 			vSizeUpdated.dispatch();
 		}
 		
@@ -151,6 +176,7 @@
 		public function set vgap(value:int):void 
 		{
 			_vgap = value;
+			vGapRange.value = value;
 			vGapUpdated.dispatch();
 		}
 		
@@ -159,6 +185,7 @@
 		public function set colSpacing(value:int):void 
 		{
 			_colSpacing = value;
+			colSpacingRange.value = value;
 			colSpacingUpdated.dispatch();
 		}
 		
@@ -167,6 +194,7 @@
 		public function set bgShade(value:int):void 
 		{
 			_bgShade = value;
+			bgShadeRange.value = value;
 			bgShadeUpdated.dispatch();
 		}
 	}
