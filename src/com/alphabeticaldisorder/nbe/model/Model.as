@@ -10,8 +10,8 @@
 	 */
 	public class Model
 	{
-		private const MAXBASE:int = 255;
-		
+		public const MAXBASE:int = 255;
+
 		private var _base:int = 2;
 		private var _number:int = 0;
 		private var _hsize:int = 10;
@@ -25,10 +25,10 @@
 		
 		public var baseRange:RangeVO;
 		public var numberRange:RangeVO;
-		public var hSizeRange:RangeVO
-		public var hGapRange:RangeVO
-		public var vSizeRange:RangeVO
-		public var vGapRange:RangeVO
+		public var hsizeRange:RangeVO
+		public var hgapRange:RangeVO
+		public var vsizeRange:RangeVO
+		public var vgapRange:RangeVO
 		public var colSpacingRange:RangeVO
 		public var bgShadeRange:RangeVO
 		
@@ -54,10 +54,10 @@
 			
 			baseRange 		= new RangeVO(2, 254, 	_base);
 			numberRange 	= new RangeVO(0, 10000, _number);
-			hSizeRange 		= new RangeVO(1, 200, 	_hsize);
-			hGapRange 		= new RangeVO(0, 80, 	_hgap);
-			vSizeRange 		= new RangeVO(1, 200, 	_vsize);
-			vGapRange 		= new RangeVO(0, 80,	_vgap);
+			hsizeRange 		= new RangeVO(1, 200, 	_hsize);
+			hgapRange 		= new RangeVO(0, 80, 	_hgap);
+			vsizeRange 		= new RangeVO(1, 200, 	_vsize);
+			vgapRange 		= new RangeVO(0, 80,	_vgap);
 			colSpacingRange = new RangeVO(0, 30, 	_colSpacing);
 			bgShadeRange 	= new RangeVO(0, 254, 	_bgShade);
 			
@@ -149,7 +149,7 @@
 		public function set hsize(value:int):void 
 		{
 			_hsize = value;
-			hSizeRange.value = value;
+			hsizeRange.value = value;
 			hSizeUpdated.dispatch();
 		}
 		
@@ -158,7 +158,7 @@
 		public function set hgap(value:int):void 
 		{
 			_hgap = value;
-			hGapRange.value = value;
+			hgapRange.value = value;
 			hGapUpdated.dispatch();
 		}
 		
@@ -167,7 +167,7 @@
 		public function set vsize(value:int):void 
 		{
 			_vsize = value;
-			vSizeRange.value = value;
+			vsizeRange.value = value;
 			vSizeUpdated.dispatch();
 		}
 		
@@ -176,7 +176,7 @@
 		public function set vgap(value:int):void 
 		{
 			_vgap = value;
-			vGapRange.value = value;
+			vgapRange.value = value;
 			vGapUpdated.dispatch();
 		}
 		
