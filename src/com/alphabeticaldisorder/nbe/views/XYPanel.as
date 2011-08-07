@@ -1,35 +1,27 @@
 package com.alphabeticaldisorder.nbe.views
 {
+	import com.alphabeticaldisorder.nbe.component.XYSlider;
 	import com.alphabeticaldisorder.nbe.model.Model;
+	import com.alphabeticaldisorder.nbe.vo.RangeVO;
+	import com.bit101.components.Label;
 	import com.bit101.components.RadioButton;
 	import com.bit101.components.Window;
 	
 	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.sampler.NewObjectSample;
 	
 	public class XYPanel extends Sprite
 	{
 		private var _window:Window;
 		private var _model:Model;
+		private var _xprop:String = "base";
+		private var _yprop:String = "base";
 		
-		private var _xBase:RadioButton;
-		private var _xNum:RadioButton;
-		private var _xhSize:RadioButton;
-		private var _xhGap:RadioButton;
-		private var _xvSize:RadioButton;
-		private var _xvGap:RadioButton;
-		private var _xColSpacing:RadioButton;
-		private var _xbgShade:RadioButton;
+		public var _xySlider:XYSlider;
 		
-		private var _yBase:RadioButton;
-		private var _yNum:RadioButton;
-		private var _yhSize:RadioButton;
-		private var _yhGap:RadioButton;
-		private var _yvSize:RadioButton;
-		private var _yvGap:RadioButton;
-		private var _yColSpacing:RadioButton;
-		private var _ybgShade:RadioButton;
-		
-		private var _names:Array = ["base", "num", "hSize", "hGap", "vSize", "vGap", "colSpacing", "bgShade"];
+		private var _xnames:Array = ["base", "number", "hsize", "hgap", "colSpacing", "bgShade"];
+		private var _ynames:Array = ["base", "number", "vsize", "vgap", "colSpacing", "bgShade"];
 		
 		public function XYPanel(model:Model)
 		{
@@ -40,28 +32,58 @@ package com.alphabeticaldisorder.nbe.views
 		private function init():void
 		{
 			_window = new Window(this, 10, 30, "XY Panel");
-			_window.width = 720;
-			_window.height = 120;
+			_window.width = 320;
+			_window.height = 240;
 			_window.draggable = true;
 			_window.hasMinimizeButton = true;
 			
-			addRadioGroup(10, "x");
-			addRadioGroup(50, "y");
+			addRadioGroup(10, "X Axis", _xnames);
+			addRadioGroup(80, "Y Axis", _ynames);
+			
+			_xySlider = new XYSlider(_window, 150, 10, updateSlider);
+			_xySlider.width = 150;
+			_xySlider.height = 150;
+			_xySlider.setXSliderParams(_model.baseRange.min, _model.baseRange.max, _model.base);
+			_xySlider.setYSliderParams(_model.baseRange.min, _model.baseRange.max, _model.base);
 		}
 		
-		private function addRadioGroup(x:int, groupName:String):void {
-			var yPos:int = 10;
+		private function addRadioGroup(x:int, groupName:String, names:Array):void {
+			new Label(_window, x, 10, groupName);
+			
+			
+			
+			var yPos:int = 50;
 			var active:Boolean = true;
-			for each (var name:String in _names) {
+			for each (var name:String in names) {
 				addRadioButton(x, yPos, name, active, groupName);
 				yPos += 20;
 				active = false;
 			}
 		}
 		
-		private function addRadioButton(x:int, y:int, name:String, active:Boolean, groupName:String):void {
-			var newRadioButton:RadioButton = new RadioButton(_window, x, y, name, active);
+		private function addRadioButton(x:int, y:int, label:String, active:Boolean, groupName:String):void {
+			var newRadioButton:RadioButton = new RadioButton(_window, x, y, label, active, updateAxis);
 			newRadioButton.groupName = groupName;
+		}
+		
+		private function updateAxis(evt:Event):void {
+			var radioButton:RadioButton = evt.target as RadioButton;
+			if (radioButton.selected) {
+				var property:String = radioButton.label;
+				var range:RangeVO = _model[(property + "Range")] as RangeVO;
+				if (radioButton.groupName == "X Axis") {
+					_xySlider.setXSliderParams(range.min, range.max, _model[property]);
+					_xprop = property;
+				} else if (radioButton.groupName == "Y Axis") {
+					_xySlider.setYSliderParams(range.min, range.max, _model[property]);
+					_yprop = property;
+				}
+			}
+		}
+		
+		private function updateSlider(evt:Event):void {
+			_model[_xprop] = _xySlider.xvalue;
+			_model[_yprop] = _xySlider.yvalue;
 		}
 	}
 }
