@@ -3,6 +3,7 @@
 	import com.alphabeticaldisorder.nbe.model.Model;
 	import com.alphabeticaldisorder.nbe.views.SliderPanel;
 	import com.alphabeticaldisorder.nbe.views.ViewPort;
+	import com.alphabeticaldisorder.nbe.views.XYPanel;
 	import com.bit101.components.VRangeSlider;
 	
 	import flash.display.Bitmap;
@@ -37,6 +38,7 @@
 			
 			this.addChild(new ViewPort(_model));
 			this.addChild(new SliderPanel(_model));
+			this.addChild(new XYPanel(_model));
 			
 			stage.addEventListener(Event.RESIZE, resize);
 			resize()

@@ -13,7 +13,9 @@ The source can be found at http://github.com/emilng/Number-Base-Explorer
 Libraries
 ---------
 
-This project makes use of MinimalComps user interface compenents which can be found at http://www.minimalcomps.com/
+This project makes use of:
+MinimalComps user interface compenents which can be found at https://github.com/minimalcomps/minimalcomps
+as3-signals library for event handling which can be found at https://github.com/robertpenner/as3-signals
 
 Licensing
 ---------
