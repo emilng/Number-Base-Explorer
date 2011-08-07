@@ -46,16 +46,16 @@
 			initSlider(_numSlider, 550, _model.numberRange);
 			
 			_hsizeSlider = new HUISlider(_window, 10, 40, "HSize", bind("hsize"));
-			initSlider(_hsizeSlider, 350, _model.hSizeRange);
+			initSlider(_hsizeSlider, 350, _model.hsizeRange);
 			
 			_hgapSlider = new HUISlider(_window, 360, 40, "HGap", bind("hgap"));
-			initSlider(_hgapSlider, 350, _model.hGapRange);
+			initSlider(_hgapSlider, 350, _model.hgapRange);
 			
 			_vsizeSlider = new HUISlider(_window, 10, 60, "VSize", bind("vsize"));
-			initSlider(_vsizeSlider, 350, _model.vSizeRange);
+			initSlider(_vsizeSlider, 350, _model.vsizeRange);
 			
 			_vgapSlider = new HUISlider(_window, 360, 60, "VGap", bind("vgap"));
-			initSlider(_vgapSlider, 350, _model.vGapRange);
+			initSlider(_vgapSlider, 350, _model.vgapRange);
 			
 			_bgShadeSlider = new HUISlider(_window, 10, 80, "BG Shade", bind("bgShade"));
 			initSlider(_bgShadeSlider, 350, _model.bgShadeRange);
