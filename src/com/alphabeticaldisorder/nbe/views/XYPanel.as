@@ -16,12 +16,14 @@ package com.alphabeticaldisorder.nbe.views
 		private var _window:Window;
 		private var _model:Model;
 		private var _xprop:String = "base";
-		private var _yprop:String = "base";
+		private var _yprop:String = "number";
+		private var _xvalue:Label;
+		private var _yvalue:Label;
 		
 		public var _xySlider:XYSlider;
 		
-		private var _xnames:Array = ["base", "number", "hsize", "hgap", "colSpacing", "bgShade"];
-		private var _ynames:Array = ["base", "number", "vsize", "vgap", "colSpacing", "bgShade"];
+		private var _xnames:Array = ["base", "hsize", "hgap", "bgShade"];
+		private var _ynames:Array = ["number", "vsize", "vgap", "colSpacing"];
 		
 		public function XYPanel(model:Model)
 		{
@@ -50,7 +52,11 @@ package com.alphabeticaldisorder.nbe.views
 		private function addRadioGroup(x:int, groupName:String, names:Array):void {
 			new Label(_window, x, 10, groupName);
 			
-			
+			if (groupName == "X Axis") {
+				_xvalue = new Label(_window, x, 30, _model[_xprop]);
+			} else if (groupName == "Y Axis") {
+				_yvalue = new Label(_window, x, 30, _model[_yprop]);
+			}
 			
 			var yPos:int = 50;
 			var active:Boolean = true;
@@ -74,16 +80,22 @@ package com.alphabeticaldisorder.nbe.views
 				if (radioButton.groupName == "X Axis") {
 					_xySlider.setXSliderParams(range.min, range.max, _model[property]);
 					_xprop = property;
+					_xvalue.text = _model[property];
 				} else if (radioButton.groupName == "Y Axis") {
 					_xySlider.setYSliderParams(range.min, range.max, _model[property]);
 					_yprop = property;
+					_yvalue.text = _model[property];
 				}
+				
+				updateSlider();
 			}
 		}
 		
-		private function updateSlider(evt:Event):void {
-			_model[_xprop] = _xySlider.xvalue;
+		private function updateSlider(evt:Event = null):void {
 			_model[_yprop] = _xySlider.yvalue;
+			_model[_xprop] = _xySlider.xvalue;
+			_xvalue.text = _model[_xprop];
+			_yvalue.text = _model[_yprop];
 		}
 	}
 }
