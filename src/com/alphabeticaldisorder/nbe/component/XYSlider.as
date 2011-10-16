@@ -104,11 +104,11 @@ package com.alphabeticaldisorder.nbe.component
 		{
 			if (min > max)
 			{
-				return Math.min(Math.max(value, min), max);
+				return Math.min(Math.max(value, max), min);
 			}
 			else
 			{
-				return Math.min(Math.max(value, max), min);
+				return Math.min(Math.max(value, min), max);
 			}
 		}
 		
@@ -150,8 +150,8 @@ package com.alphabeticaldisorder.nbe.component
 		 */
 		public function setXSliderParams(min:Number, max:Number, value:Number):void
 		{
-			this.xMinimum = min;
-			this.xMaximum = max;
+			_xmin = min;
+			_xmax = max;
 			this.xvalue = value;
 		}
 		
@@ -163,8 +163,8 @@ package com.alphabeticaldisorder.nbe.component
 		 */
 		public function setYSliderParams(min:Number, max:Number, value:Number):void
 		{
-			this.yMinimum = min;
-			this.yMaximum = max;
+			_ymin = min;
+			_ymax = max;
 			this.yvalue = value;
 		}
 		
@@ -274,7 +274,7 @@ package com.alphabeticaldisorder.nbe.component
 		 */
 		public function set yvalue(v:Number):void
 		{
-			_yvalue = correctValue(v, _xmin, _xmax);
+			_yvalue = correctValue(v, _ymin, _ymax);
 			positionHandle();
 			
 		}
@@ -319,7 +319,7 @@ package com.alphabeticaldisorder.nbe.component
 		public function set yMaximum(m:Number):void
 		{
 			_ymax = m;
-			_yvalue = correctValue(_yvalue, _xmin, _xmax);
+			_yvalue = correctValue(_yvalue, _ymin, _ymax);
 			positionHandle();
 		}
 		public function get yMaximum():Number
